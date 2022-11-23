@@ -1,0 +1,14 @@
+<div class="body">
+  <ngx-snackbar [position]="'bottom-right'"
+    [color]="'#ffffff'"
+    [max]="2"
+    [background]="toastBg"
+    [accent]="'#ffffff'">
+  </ngx-snackbar>
+  <div class="navigation" *ngIf="viewNavBar">
+    <app-navigation></app-navigation>
+  </div>
+  <div [ngClass]="viewNavBar ? 'main' : ' '">
+    <router-outlet></router-outlet>
+  </div>
+</div>  

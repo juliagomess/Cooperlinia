@@ -1,0 +1,83 @@
+.body {
+    display: grid;
+}
+
+.navigation {
+    grid-template-areas: navigation;
+}
+
+.main {
+    grid-template-areas: main;
+    align-items: center; /* alinha verticalmente */
+    justify-items: center; /* alinha horizontalmente */
+    padding: 30px;
+    height: calc(100vh - 80px);
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+label {
+    white-space: nowrap;
+}
+  
+/* Extra small devices (phones, 600px and down) */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 991px) {
+    .body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+        "navigation"
+        "main";
+    }
+
+    .navigation {
+        height: auto;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 992px) {
+    .body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+        "navigation"
+        "main";
+    }
+
+    .navigation {
+        height: 80px;
+    }
+}
+
+form {
+    margin-top: 25px;
+}
+
+/* Fixar coluna e cabeçalho de opções ================== */
+thead th {
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    top: 0;
+}
+
+thead th:last-child {
+    right: 0;
+    z-index: 1;
+}
+
+tbody th {
+    box-shadow: 0 0 5px 0 rgb(5 5 5 / 10%);
+    background: #FFF;
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    right: 0;
+}
+/* ========================================= */
+
+ngx-snackbar {
+    position: absolute;
+}

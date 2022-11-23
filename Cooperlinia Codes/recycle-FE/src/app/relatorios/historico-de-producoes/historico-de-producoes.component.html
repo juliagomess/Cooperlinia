@@ -1,0 +1,85 @@
+
+<h3>Histórico de produção</h3>
+
+<!-- form cabeçalho -->
+<form [formGroup]="headForm">
+    <div class="cabecalho">
+        <div class="form-row">           
+            <div class="form-group col-md-6"> 
+                <label for="producao">Produção</label>                   
+                <ng-select formControlName="producao" id="tipo" name="entrada" placeholder="Produção">
+                    <ng-option [value]="'Triagem'">Triagem</ng-option>
+                    <ng-option [value]="'Prensa'">Prensa</ng-option>
+                    <ng-option [value]="'Remanufatura'">Remanufatura</ng-option>
+                    <ng-option [value]="''">Todas</ng-option>
+                </ng-select>
+            </div>  
+
+            <div class="form-group col-md-3">
+                <label for="data">Data Início <i class="fa fa-question-circle" tooltip="Gostaria de visualizar o historico partindo de qual dia?"></i></label>
+                <input class="form-control" formControlName="inicio"  name="inicio" type="date">
+            </div>  
+
+            <div class="form-group col-md-3">
+                <label for="data">Data Término <i class="fa fa-question-circle" tooltip="Gostaria de visualizar o historico até qual dia?"></i></label>
+                <input class="form-control" formControlName="fim" name="fim" type="date">
+            </div>  
+        </div>
+
+    </div>
+
+    <div class="row d-flex justify-content-around btn-prod">
+        <button type="button"  class="btn btn-success btn-lg" (click)="generateReport()"><i class="fa fa-print"></i>Gerar Relatório</button>
+        <button type="button"  class="btn btn-primary btn-lg" (click)="exportReport()"><i class="fa fa-play-circle"></i>Baixar Relatório</button>
+    </div>
+</form>
+<!-- ============== -->
+
+
+<div class="table-list table-shadow" id="tabHistoryProduct">
+    <table class="table table-hover" *ngIf="showTable">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col"> <i class="fa fa-list"></i>Nº do lote</th>
+            <th scope="col"> <i class="fa fa-history"></i>Fim da produção</th>
+            <th scope="col"> <i class="fa fa-history"></i>Início da produção</th>
+            <th scope="col"> <i class="fa fa-map-pin"></i>Observação</th>
+            <th scope="col"> <i class="fa fa-exclamation-circle" tooltip="Tempo total de produção"></i>Tempo total</th>
+            <th scope="col"> <i class="fa fa-question-circle"></i>ID do fornecedor</th>
+            <th scope="col"> <i class="fa fa-question-circle"></i>ID do sócio</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let movimentacao of tempItemsList">
+                <td >{{ sharedVariableService.currentDate(movimentacao.data) }}</td>
+                <td>{{ sharedVariableService.currentTime(movimentacao.data) }}</td>
+                <td> 
+                    <div class="saida" *ngIf="movimentacao.entrada_saida === 'S' ">Saida</div>
+                    <div class="entrada" *ngIf="movimentacao.entrada_saida === 'E'">Entrada</div>
+                </td>
+                <td>{{ movimentacao.tipo }}</td>
+                <td>{{ movimentacao.numero_tipo }}</td>
+                <td>{{ movimentacao.saldo_anterior }}</td>
+                <td>
+                    <div *ngIf="movimentacao.entrada_saida === 'S'">- {{ movimentacao.dif }}</div>
+                    <div *ngIf="movimentacao.entrada_saida === 'E'">+ {{ movimentacao.dif }}</div>
+                    </td>
+                <td>{{ movimentacao.saldo_atual }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Lista sem dados -->
+<div *ngIf="!showForm && !tempItemsList?.length" class="alert alert-info" role="alert">
+    <h4 class="alert-heading ">Opa !</h4>
+    <p>Nenhum resultado foi encontrado.</p>
+</div>
+
+<div class="alert alert-secondary" role="alert" *ngIf="!showTable">
+    <h4 class="alert-heading ">Relatório ainda não gerado !</h4>
+    <p>Selecione as opções desejadas e busque pelo seu produto para ver o historico de movimentações.</p> 
+</div>
+<!-- =============== -->
+
+

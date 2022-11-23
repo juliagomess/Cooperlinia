@@ -1,0 +1,88 @@
+<header>
+  <div class="container">
+    <input type="checkbox" name="" id="check">
+    
+    <div class="logo-container">
+      <a class="navbar-brand" routerLink="/home">
+        <img src="../../assets/img/cooperlinia-logo.png" alt="logo" height="45px">
+      </a>
+    </div>
+
+    <div class="nav-btn">
+      <div class="nav-links">
+        <ul>
+          <li class="nav-link" style="--i: .85s"><a>Cadastros<i class="fa fa-caret-down"></i></a>
+              <div class="dropdown">
+                <ul>
+                  <li class="dropdown-link"><a routerLink="/clientes">Clientes</a></li>
+                  <li class="dropdown-link"><a routerLink="/condicoesDePagamento">Condições de Pagamento</a></li>
+                  <li class="dropdown-link"><a routerLink="/familias">Famílias</a></li>
+                  <li class="dropdown-link"><a routerLink="/fornecedores">Fornecedores</a></li>
+                  <li class="dropdown-link"><a routerLink="/materiasPrimas">Matérias Primas</a></li>
+                  <li class="dropdown-link"><a routerLink="/motivosDeParada">Motivos de Parada</a></li>
+                  <li class="dropdown-link"><a routerLink="/naturezaDasOperacoes">Natureza das Operações</a></li>
+                  <li class="dropdown-link"><a routerLink="/prensas">Prensas</a></li>
+                  <li class="dropdown-link"><a routerLink="/produtos">Produtos</a></li>
+                  <li class="dropdown-link"><a routerLink="/qualidades">Qualidades</a></li>
+                  <li class="dropdown-link"><a routerLink="/socios">Sócios</a></li>
+                  <li class="dropdown-link"><a routerLink="/transportadoras">Transportadoras</a></li>
+                  <li class="dropdown-link"><a routerLink="/precificacao">Variações de Produto</a></li>
+                </ul>
+            </div>
+          </li>
+
+          <li class="nav-link" style="--i: 1.1s"><a routerLink="/estoque">Estoque</a></li>
+
+          <li class="nav-link" style="--i: 1.1s"><a>Financeiro<i class="fa fa-caret-down"></i></a>
+            <div class="dropdown">
+              <ul>
+                <li class="dropdown-link"><a routerLink="/contas">Contas</a></li>
+                <li class="dropdown-link"><a routerLink="/vendas">Vendas</a></li>
+              </ul>
+            </div>
+          </li>   
+     
+          <li class="nav-link" style="--i: 1.1s"><a>Produção<i class="fa fa-caret-down"></i></a>
+            <div class="dropdown">
+              <ul>
+                <li class="dropdown-link"><a routerLink="/triagem">Triagem</a></li>
+                <li class="dropdown-link"><a routerLink="/prensa">Prensa</a></li>
+                <li class="dropdown-link"><a routerLink="/remanufatura">Remanufatura</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-link" style="--i: 1.1s"><a>Relatórios<i class="fa fa-caret-down"></i></a>
+            <div class="dropdown">
+              <ul>
+                <li class="dropdown-link"><a routerLink="/historicoDeProduto">Histórico de Produto</a></li>
+                <!-- <li class="dropdown-link"><a routerLink="/historicoDeProducoes">Histórico de Produções</a></li> -->
+              </ul>
+            </div>
+          </li>               
+        </ul>
+      </div>
+
+      <div class="log-sign">
+        <li class="nav-link">
+          <a class="navbar-brand">
+            <ngx-avatar *ngIf="!person.foto" name="{{ person.nome }}" initialsSize="2"></ngx-avatar>
+            <img *ngIf="person.foto" src="{{ person.foto }}" class="rounded-circle z-depth-0" alt="avatar image" height="45" width="45">
+          </a>
+          <div class="dropdown-profile">
+            <ul>
+              <li class="dropdown-link"><a (click)="logOut()"><i class="fa fa-door"></i> Sair</a></li>
+              <li class="dropdown-link"><a routerLink="/configiScreen"><i class="fa fa-cog"></i> Configurações</a></li>
+            </ul>
+          </div>
+        </li>      
+      </div>
+    </div>
+    
+    <div class="hamburger-menu-container">
+        <div class="hamburger-menu">
+            <div></div>
+        </div>
+    </div>
+  </div>
+</header>
